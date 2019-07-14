@@ -1,4 +1,7 @@
 import { app, BrowserWindow } from 'electron';
+import { enableLiveReload } from 'electron-compile';
+
+enableLiveReload();
 
 let mainWindow;
 
