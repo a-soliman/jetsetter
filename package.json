@@ -10,7 +10,7 @@
   "keywords": [
     "electron"
   ],
-  "author": "Ahmed Soliman",
+  "author": "Ahmed Solima",
   "license": "MIT",
   "dependencies": {
     "electron": "1.7.11",
