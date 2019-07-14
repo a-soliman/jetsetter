@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Items from './Items';
+import NewItem from './NewItem';
 
 const Application = () => {
   const [items, setItems] = useState([
@@ -6,14 +8,20 @@ const Application = () => {
   ]);
 
   const filterItems = () => {
-    const packed = items.map(item => item.packed);
-    const unPacked = items.map(item => !item.packed);
+    const packed = items.filter(item => item.packed);
+    const unPacked = items.filter(item => !item.packed);
     return { packed, unPacked };
   };
 
-  const addItem = item => setItems([...items, item]);
+  const addItem = item => setItems([item, ...items]);
 
-  const markAsPacked = item => {};
+  const togglePacked = (id) => {
+    const updatedItems = items.map(item => {
+      if (item.id === id) item.packed = !item.packed;
+      return item;
+    });
+    setItems(updatedItems);
+  };
 
   const markAllAsUnPacked = () => {
     const updatedItems = [...items].map(item => {
@@ -27,9 +35,9 @@ const Application = () => {
 
   return (
     <div className="application">
-      {/* TO BE IMPLEMENTED: <NewItem /> */}
-      {/* TO BE IMPLEMENTED: <Items title="Unpacked Items" /> */}
-      {/* TO BE IMPLEMENTED: <Items title="Packed Items" /> */}
+      <NewItem onSubmit={addItem} />
+      <Items title="Unpacked Items" items={unPacked} onCheckOff={togglePacked} />
+      <Items title="Packed Items" items={packed} onCheckOff={togglePacked} />
       <button className="full-width" onClick={markAllAsUnPacked}>Mark All Unpacked</button>
     </div>
   );
