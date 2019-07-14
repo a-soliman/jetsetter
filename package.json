@@ -16,8 +16,8 @@
     "electron": "1.7.11",
     "electron-prebuilt-compile": "1.7.11",
     "prop-types": "15.6.0",
-    "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
