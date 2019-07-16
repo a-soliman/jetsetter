@@ -30,7 +30,7 @@ const Application = ({ database }) => {
   const addItem = async (item) => {
     try {
       await database('items').insert(item);
-      setItems([item, ...items]);
+      await fetchItems();
     }
     catch(e) {
       console.error(e);
