@@ -49,12 +49,14 @@ const Application = ({ database }) => {
     }
   };
 
-  const markAllAsUnPacked = () => {
-    const updatedItems = [...items].map(item => {
-      item.packed = false;
-      return item;
-    });
-    setItems(updatedItems);
+  const markAllAsUnPacked = async () => {
+    try {
+      await database('items').select().update({ packed: false });
+      await fetchItems();
+    }
+    catch(e) {
+      console.error(e);
+    }
   };
 
   const { packed, unPacked } = filterItems();
