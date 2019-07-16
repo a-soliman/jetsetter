@@ -37,12 +37,16 @@ const Application = ({ database }) => {
     }
   };
 
-  const togglePacked = (id) => {
-    const updatedItems = items.map(item => {
-      if (item.id === id) item.packed = !item.packed;
-      return item;
-    });
-    setItems(updatedItems);
+  const togglePacked = async (id) => {
+    const item = items.find(item => item.id === id);
+
+    try {
+      await database('items').where('id', '=', id).update({ packed: !item.packed});
+      await fetchItems();
+    }
+    catch(e) {
+      console.error(e);
+    }
   };
 
   const markAllAsUnPacked = () => {
