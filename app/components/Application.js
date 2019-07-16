@@ -27,7 +27,15 @@ const Application = ({ database }) => {
     return { packed, unPacked };
   };
 
-  const addItem = item => setItems([item, ...items]);
+  const addItem = async (item) => {
+    try {
+      await database('items').insert(item);
+      setItems([item, ...items]);
+    }
+    catch(e) {
+      console.error(e);
+    }
+  };
 
   const togglePacked = (id) => {
     const updatedItems = items.map(item => {
