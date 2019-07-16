@@ -10,7 +10,7 @@ const NewItem = ({onSubmit}) => {
   const handleSubmit = evt => {
     evt.preventDefault();
     if (value === '') return;
-    const newItem = { value, id: Date.now(), packed:false };
+    const newItem = { value, packed:false };
     onSubmit(newItem);
     setValue('');
   }
