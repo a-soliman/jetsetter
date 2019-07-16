@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Items from './Items';
 import NewItem from './NewItem';
 
-const Application = () => {
+const Application = ({ database }) => {
   const [items, setItems] = useState([
     { value: 'Pants', id: Date.now(), packed: false }
   ]);
+
+  useEffect(() => {
+    fetchItems();
+  })
+
+  const fetchItems = async () => {
+    try {
+      const result = await database('items').select();
+      setItems(result);
+    }
+    catch(e) {
+      console.error(e);
+    }
+  };
 
   const filterItems = () => {
     const packed = items.filter(item => item.packed);
