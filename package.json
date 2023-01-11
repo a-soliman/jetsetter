@@ -19,7 +19,7 @@
     "electron-compile": "^6.4.4",
     "electron-squirrel-startup": "^1.0.0",
     "idb": "2.0.4",
-    "knex": "^0.14.3",
+    "knex": "^2.4.0",
     "prop-types": "15.6.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
